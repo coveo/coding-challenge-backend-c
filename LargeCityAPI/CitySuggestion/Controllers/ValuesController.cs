@@ -12,10 +12,12 @@ namespace CitySuggestion.Controllers
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<string>> Get()
         {
-            var _ = FetchCityInfo("Mont");
-            return new string[] { "value1", "value2" };
+            var cityInfo = await FetchCityInfo("Mont");
+            return CityInformationHelper.ConvertStringToCityInfoStrings(cityInfo);
+
+            //return new string[] { "value1", "value2" };
         }
 
         public async Task<string> FetchCityInfo(string name)
@@ -23,13 +25,9 @@ namespace CitySuggestion.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://AutoCompleteCity.geobytes.com/");
-                var content = new FormUrlEncodedContent(new[]
-                {
-                new KeyValuePair<string, string>("", "cities")
-            });
+                var content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>() });
                 var result = await client.PostAsync("AutoCompleteCity?callback=?&sort=size&q=" + name, content);
                 string resultContent = await result.Content.ReadAsStringAsync();
-                Console.WriteLine(resultContent);
                 return resultContent;
             }
         }
