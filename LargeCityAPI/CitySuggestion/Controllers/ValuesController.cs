@@ -4,19 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
 
-namespace LargeCityAPI.Controllers
+namespace CitySuggestion.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET api/values
+        [HttpGet]
+        public IEnumerable<string> Get()
         {
-            return "value";
+            var _ = FetchCityInfo("Mont");
+            return new string[] { "value1", "value2" };
         }
 
         public async Task<string> FetchCityInfo(string name)
@@ -28,7 +27,7 @@ namespace LargeCityAPI.Controllers
                 {
                 new KeyValuePair<string, string>("", "cities")
             });
-                var result = await client.PostAsync("AutoCompleteCity?callback=?&sort=size&q=" +name, content);
+                var result = await client.PostAsync("AutoCompleteCity?callback=?&sort=size&q=" + name, content);
                 string resultContent = await result.Content.ReadAsStringAsync();
                 Console.WriteLine(resultContent);
                 return resultContent;
@@ -41,6 +40,13 @@ namespace LargeCityAPI.Controllers
         public async Task Post([FromBody]string value)
         {
             var cityInfo = await FetchCityInfo(value);
+        }
+
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return "value";
         }
 
         // PUT api/values/5
