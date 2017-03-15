@@ -16,11 +16,9 @@ namespace CitySuggestion.Controllers
         {
             var cityInfo = await FetchCityInfo("Mont");
             return CityInformationHelper.ConvertStringToCityInfoStrings(cityInfo);
-
-            //return new string[] { "value1", "value2" };
         }
 
-        public async Task<string> FetchCityInfo(string name)
+        private async Task<string> FetchCityInfo(string name)
         {
             using (var client = new HttpClient())
             {
@@ -32,12 +30,12 @@ namespace CitySuggestion.Controllers
             }
         }
 
-
         // POST api/values
         [HttpPost]
-        public async Task Post([FromBody]string value)
+        public async Task<IEnumerable<string>> Post([FromBody]string value)
         {
             var cityInfo = await FetchCityInfo(value);
+            return CityInformationHelper.ConvertStringToCityInfoStrings(cityInfo);
         }
 
         // GET api/values/5
