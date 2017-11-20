@@ -1,23 +1,27 @@
-# Coveo Backend Coding Challenge
-(inspired by https://github.com/busbud/coding-challenge-backend-c)
+# TLM Coding challenge
+(inspired by https://github.com/coveo/backend-coding-challenge)
 
 ## Requirements
 
-Design an API endpoint that provides auto-complete suggestions for large cities.
+### Backend
+Design an API endpoint that provides a ninja name based on a list of technology buzzwords
 
-- The endpoint is exposed at `/suggestions`
-- The partial (or complete) search term is passed as a querystring parameter `q`
-- The caller's location can optionally be supplied via querystring parameters `latitude` and `longitude` to help improve relative scores
-- The endpoint returns a JSON response with an array of scored suggested matches
-    - The suggestions are sorted by descending score
-    - Each suggestion has a score between 0 and 1 (inclusive) indicating confidence in the suggestion (1 is most confident)
-    - Each suggestion has a name which can be used to disambiguate between similarly named locations
-    - Each suggestion has a latitude and longitude
+- The endpoint is exposed at `/ninjify`
+- The search has to be deterministic
+- The search term is passed as a querystring parameter `x`
+- The endpoint returns a JSON with a ninja name
+
+### Frontend
+Design an user interface to input web technology buzzwords and then generate an awesome ninja name.
+
+- Responsive
+- Mobile/Desktop compatibility
 
 ## "The rules"
 
 - *You can use the language and technology of your choosing.* It's OK to try something new (tell us if you do), but feel free to use something you're comfortable with. We don't care if you use something we don't; the goal here is not to validate your knowledge of a particular technology.
 - End result should be deployed on a public Cloud (Heroku, AWS etc. all have free tiers you can use).
+- The results have to be SFW and politically correct
 
 ## Advices
 
@@ -26,59 +30,22 @@ Design an API endpoint that provides auto-complete suggestions for large cities.
 - Documentation and maintainability is a plus.
 - Don't you forget those unit tests.
 - We don’t want to know if you can do exactly as asked (or everybody would have the same result). We want to know what **you** bring to the table when working on a project, what is your secret sauce. More features? Best solution? Thinking outside the box?
+- Make sure you apply security good practices
+
+## Bonuses
+- Add easter egg with the `Konami` code.
 
 ## Sample responses
 
 These responses are meant to provide guidance. The exact values can vary based on the data source and scoring algorithm
 
-**Near match**
-
-    GET /suggestions?q=Londo&latitude=43.70011&longitude=-79.4163
+    GET /ninjify?x=sass,rails,html
 
 ```json
 {
-  "suggestions": [
-    {
-      "name": "London, ON, Canada",
-      "latitude": "42.98339",
-      "longitude": "-81.23304",
-      "score": 0.9
-    },
-    {
-      "name": "London, OH, USA",
-      "latitude": "39.88645",
-      "longitude": "-83.44825",
-      "score": 0.5
-    },
-    {
-      "name": "London, KY, USA",
-      "latitude": "37.12898",
-      "longitude": "-84.08326",
-      "score": 0.5
-    },
-    {
-      "name": "Londontowne, MD, USA",
-      "latitude": "38.93345",
-      "longitude": "-76.54941",
-      "score": 0.3
-    }
-  ]
+  "name": "Red Drop Shadow"
 }
 ```
-
-**No match**
-
-    GET /suggestions?q=SomeRandomCityInTheMiddleOfNowhere
-
-```json
-{
-  "suggestions": []
-}
-```
-
-## References
-
-- Geonames provides city lists Canada and the USA http://download.geonames.org/export/dump/readme.txt
 
 ## Getting Started
 
