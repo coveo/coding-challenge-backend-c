@@ -19,17 +19,17 @@ Design an API endpoint that provides auto-complete suggestions for large cities.
 - *You can use the language and technology of your choosing.* It's OK to try something new (tell us if you do), but feel free to use something you're comfortable with. We don't care if you use something we don't; the goal here is not to validate your knowledge of a particular technology.
 - End result should be deployed on a public Cloud (Heroku, AWS etc. all have free tiers you can use).
 
-## Advices
+## Advice
 
 - **Try to design and implement your solution as you would do for real production code**. Show us how you create clean, maintainable code that does awesome stuff. Build something that we'd be happy to contribute to. This is not a programming contest where dirty hacks win the game.
-- Documentation and maintainability is a plus, and don't you forget those unit tests.
+- Documentation and maintainability are a plus, and don't you forget those unit tests.
 - We don’t want to know if you can do exactly as asked (or everybody would have the same result). We want to know what **you** bring to the table when working on a project, what is your secret sauce. More features? Best solution? Thinking outside the box?
 
 ## Can I use a database?
 
 If you wish, it's OK to use external systems such as a database, an Elastic index, etc. in your solution. But this is certainly not required to complete the basic requirements of the challenge. Keep in mind that **our goal here is to see some code of yours**; if you only implement a thin API on top of a DB we won't have much to look at.
 
-Our advice is that if you choose to use an external search system, you are better be doing something really truly awesome with it.
+Our advice is that if you choose to use an external search system, you had better be doing something really truly awesome with it.
 
 ## Sample responses
 
