@@ -5,3 +5,5 @@
 /.vs
 /AutoComplete/obj
 /AutoComplete/bin
+/AutoCompleteUnitTests/obj
+/AutoCompleteUnitTests/bin

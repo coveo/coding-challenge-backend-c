@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoComplete.Controllers
@@ -10,6 +7,13 @@ namespace AutoComplete.Controllers
     [ApiController]
     public class SuggestionsController : ControllerBase
     {
+        private DataTable citiesData;
+
+        public SuggestionsController()
+        {
+            citiesData = data.DataHelper.LoadData(@"data\cities_canada-usa.tsv");
+        }
+
         // GET /suggestions
         [HttpGet]
         public ActionResult<SuggestionsResult> Get(string q, double? latitude, double? longitude)

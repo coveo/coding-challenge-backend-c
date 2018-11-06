@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoComplete", "AutoComplete\AutoComplete.csproj", "{B3715B71-7938-4EA7-88B0-D06F30ED3C8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoCompleteUnitTests", "AutoCompleteUnitTests\AutoCompleteUnitTests.csproj", "{48A3EE20-0EF0-4F09-AF65-012AA514FE5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B3715B71-7938-4EA7-88B0-D06F30ED3C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3715B71-7938-4EA7-88B0-D06F30ED3C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3715B71-7938-4EA7-88B0-D06F30ED3C8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48A3EE20-0EF0-4F09-AF65-012AA514FE5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48A3EE20-0EF0-4F09-AF65-012AA514FE5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48A3EE20-0EF0-4F09-AF65-012AA514FE5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48A3EE20-0EF0-4F09-AF65-012AA514FE5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
