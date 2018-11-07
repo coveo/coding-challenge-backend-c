@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoComplete", "AutoComplete\AutoComplete.csproj", "{B3715B71-7938-4EA7-88B0-D06F30ED3C8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoComplete", "AutoComplete\AutoComplete.csproj", "{B3715B71-7938-4EA7-88B0-D06F30ED3C8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoCompleteUnitTests", "AutoCompleteUnitTests\AutoCompleteUnitTests.csproj", "{48A3EE20-0EF0-4F09-AF65-012AA514FE5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoCompleteUnitTests", "AutoCompleteUnitTests\AutoCompleteUnitTests.csproj", "{48A3EE20-0EF0-4F09-AF65-012AA514FE5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CitiesSuggestions", "CitiesSuggestions\CitiesSuggestions.csproj", "{4577D2FC-AA3E-46D3-B528-1C8C1A1542D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{48A3EE20-0EF0-4F09-AF65-012AA514FE5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48A3EE20-0EF0-4F09-AF65-012AA514FE5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48A3EE20-0EF0-4F09-AF65-012AA514FE5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4577D2FC-AA3E-46D3-B528-1C8C1A1542D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4577D2FC-AA3E-46D3-B528-1C8C1A1542D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4577D2FC-AA3E-46D3-B528-1C8C1A1542D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4577D2FC-AA3E-46D3-B528-1C8C1A1542D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

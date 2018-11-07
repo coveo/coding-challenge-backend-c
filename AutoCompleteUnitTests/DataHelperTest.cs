@@ -8,11 +8,8 @@ namespace AutoCompleteUnitTests
         [Fact]
         public void SomeDataWasLoaded()
         {
-            var data = AutoComplete.data.DataHelper.LoadData(@"cities_canada-usa.tsv");
-            var numberOfColumns = data.Columns.Count;
-            var numberOfRows = data.Rows.Count;
-            Assert.True(numberOfColumns > 0);
-            Assert.True(numberOfRows > 0);
+            var data = CitiesSuggestions.DataHelper.LoadData();
+            Assert.True(data.Count > 0);
         }
     }
 }

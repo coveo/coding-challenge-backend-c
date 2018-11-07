@@ -1,5 +1,4 @@
-﻿using System.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace AutoComplete.Controllers
 {
@@ -7,20 +6,27 @@ namespace AutoComplete.Controllers
     [ApiController]
     public class SuggestionsController : ControllerBase
     {
-        private DataTable citiesData;
+        private CitiesSuggestions.ISuggestions Suggestions;
 
         public SuggestionsController()
         {
-            citiesData = data.DataHelper.LoadData(@"data\cities_canada-usa.tsv");
+            Suggestions = CitiesSuggestions.CoreLogic.Factory.CreateWithDefaultCities();
         }
 
         // GET /suggestions
         [HttpGet]
-        public ActionResult<SuggestionsResult> Get(string q, double? latitude, double? longitude)
+        public ActionResult<CitiesSuggestions.SuggestionsResult> Get(string q, double? latitude, double? longitude)
         {
-            var ret = new SuggestionsResult();
-            ret.AddItem(new SuggestionsResultItem() { name = "**YOUR QUERY** London, WITH POS,++" + q, latitude = latitude.HasValue ? latitude.ToString() : "no lat given", longitude = longitude.HasValue? longitude.ToString() : "no long given", score = 0.9 });
-            return ret;
+            if(latitude.HasValue && longitude.HasValue)
+            {
+                var ret = Suggestions.GetSuggestions(q, new System.Tuple<double, double>(latitude.Value, longitude.Value));
+                return ret;
+            }
+            else
+            {
+                var ret = Suggestions.GetSuggestions(q);
+                return ret;
+            }
         }
 
     }

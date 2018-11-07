@@ -13,15 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AutoComplete\AutoComplete.csproj">
-      <Private>true</Private>
-    </ProjectReference>
+    <ProjectReference Include="..\CitiesSuggestions\CitiesSuggestions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="cities_canada-usa.tsv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

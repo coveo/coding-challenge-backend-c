@@ -5,22 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="data\cities_canada-usa.tsv" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="data\cities_canada-usa.tsv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CitiesSuggestions\CitiesSuggestions.csproj">
+      <Private>true</Private>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>
