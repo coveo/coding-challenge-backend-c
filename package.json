@@ -1,0 +1,23 @@
+{
+  "name": "backend-coding-challenge",
+  "version": "1.0.0",
+  "description": "Implement a REST api using the language of my choice while satisfying the conditions stated in the README",
+  "main": "index.js",
+  "repository": "https://github.com/Vboivin/backend-coding-challenge.git",
+  "author": "Vincent Boivin <vboivin04@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mocha": "^5.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "nodemon": "^1.18.9"
+  },
+  "scripts": {
+    "server": "nodemon ./api/app.js",
+    "test": "mocha"
+  }
+}
