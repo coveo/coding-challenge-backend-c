@@ -1,0 +1,29 @@
+{
+  "name": "backend-coding-challenge",
+  "version": "1.0.0",
+  "description": "(inspired by https://github.com/busbud/coding-challenge-backend-c)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "heroku-postbuild":"npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NickKarvounakis/backend-coding-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NickKarvounakis/backend-coding-challenge/issues"
+  },
+  "homepage": "https://github.com/NickKarvounakis/backend-coding-challenge#readme",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "d3": "^5.9.7",
+    "d3-fetch": "^1.1.2",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "node-fetch": "^2.6.0"
+  }
+}
