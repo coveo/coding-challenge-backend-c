@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: ArsentiiChander
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: city_pk
+                  name: id
+                  type: bigint
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: latitude
+                  type: bigint
+              - column:
+                  name: longitude
+                  type: bigint
+              - column:
+                  name: population
+                  type: bigint
+            tableName: cities
