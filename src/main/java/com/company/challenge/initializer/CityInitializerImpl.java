@@ -2,12 +2,9 @@ package com.company.challenge.initializer;
 
 import com.company.challenge.entity.City;
 import com.company.challenge.repository.CityRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +20,7 @@ public class CityInitializerImpl implements CityInitializer {
     private final Resource csvFile;
     private final CityRepository cityRepository;
 
-    public CityInitializerImpl(@Value("classpath:data/cities_canada-usa.csv")Resource csvFile,
+    public CityInitializerImpl(@Value("classpath:data/cities_canada-usa.csv") Resource csvFile,
                                CityRepository cityRepository) {
         this.csvFile = csvFile;
         this.cityRepository = cityRepository;
@@ -31,7 +28,6 @@ public class CityInitializerImpl implements CityInitializer {
 
     @SneakyThrows
     @Override
-    @EventListener(ApplicationReadyEvent.class)
     public void initialize() {
         log.info("Move data from file to db");
         BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile.getInputStream(),
