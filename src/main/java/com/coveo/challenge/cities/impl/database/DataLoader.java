@@ -2,8 +2,7 @@ package com.coveo.challenge.cities.impl.database;
 
 import com.coveo.challenge.cities.model.City;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.io.File;
@@ -18,9 +17,9 @@ import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Configuration
+@Component
 @Slf4j
-public class DataConfig {
+public class DataLoader {
 
     private static final int ID_IDX = 0;
     private static final int NAME_IDX = 1;
@@ -34,15 +33,16 @@ public class DataConfig {
      */
     public static final String CANADA = "CA";
 
-    @Bean
-    NavigableMap<String, City> loadData() throws IOException {
-        // TODO move to app properties
-        File file = new File("data/cities_canada-usa.tsv");
+    /**
+     *
+     */
+    public NavigableMap<String, City> loadData(String filepath) throws IOException {
+        File file = new File(filepath);
         final Collection<City> cities;
         try (var lines = Files.lines(file.toPath()).skip(1)) {
             cities = lines
                     .map(line -> line.split("\t"))
-                    .map(DataConfig::buildUniqueCityName)
+                    .map(DataLoader::buildUniqueCityName)
                     .collect(Collectors.toList());
         }
 
