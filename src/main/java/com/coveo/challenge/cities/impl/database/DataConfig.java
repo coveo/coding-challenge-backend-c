@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Configuration
 @Slf4j
 public class DataConfig {
-    
+
     private static final int ID_IDX = 0;
     private static final int NAME_IDX = 1;
     private static final int LATITUDE_IDX = 4;
@@ -78,11 +78,13 @@ public class DataConfig {
     private static City buildUniqueCityName(String[] input) {
         final long id = Long.parseLong(input[ID_IDX]);
         final String country = input[COUNTRY_IDX];
-        final String name = input[NAME_IDX] + ", " +
+        final String shortName = input[NAME_IDX];
+        final String fullName = shortName + ", " +
                 (country.equals(CANADA) ?
                         CanadianProvince.ofFipsCode(Integer.parseInt(input[STATE_IDX])).name() :
                         input[STATE_IDX])
                 + ", " + country;
-        return City.of(id, name, new BigDecimal(input[LATITUDE_IDX]), new BigDecimal(input[LONGITUDE_IDX]));
+        return City.of(id, shortName, fullName, new BigDecimal(input[LATITUDE_IDX]),
+                new BigDecimal(input[LONGITUDE_IDX]));
     }
 }

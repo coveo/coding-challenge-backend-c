@@ -20,7 +20,11 @@ public class ScoringServiceImpl implements ScoringService {
      * Scaled used in score calculations.
      */
     private static final int SCALE = 2;
-    private static final BigDecimal MAX_DISTANCE = BigDecimal.valueOf(Math.sqrt(180 * 180 * 2));
+
+    /**
+     * Margin distance for a city to be relevant, 40 degrees.
+     */
+    private static final BigDecimal MAX_RELEVANT_DISTANCE = BigDecimal.valueOf(40);
 
     @Override
     public List<Suggestion> evaluate(Query query, List<City> cities) {
@@ -28,7 +32,7 @@ public class ScoringServiceImpl implements ScoringService {
     }
 
     private BigDecimal computeScore(Query query, City city) {
-        var nameScore = computeNameScore(query.getQueryString(), city.getName());
+        var nameScore = computeNameScore(query.getQueryString(), city.getShortName());
         if (query.getLatitude() == null || query.getLongitude() == null) {
             return nameScore;
         }
@@ -48,10 +52,25 @@ public class ScoringServiceImpl implements ScoringService {
     private BigDecimal computeCoordinateScore(@NotNull BigDecimal requestedLatitude,
                                               @NotNull BigDecimal requestedLongitude,
                                               @NotNull BigDecimal actualLatitude, @NotNull BigDecimal actualLongitude) {
-        var distance = requestedLatitude.subtract(actualLatitude).pow(2).add(
-                requestedLongitude.subtract(actualLongitude).pow(2)).sqrt(MathContext.DECIMAL32).setScale(1,
-                RoundingMode.CEILING);
-        return BigDecimal.ONE.subtract(distance.divide(MAX_DISTANCE, RoundingMode.FLOOR));
+        // TODO normalize
+        var latitudeDiffSquared = computeDiffSquared(requestedLatitude, actualLatitude);
+        var longitudeDiffSquared = computeDiffSquared(requestedLongitude, actualLongitude);
+        var distance = latitudeDiffSquared.add(longitudeDiffSquared)
+                .sqrt(MathContext.DECIMAL32)
+                .setScale(1, RoundingMode.CEILING);
+        if (distance.compareTo(MAX_RELEVANT_DISTANCE) > 0) {
+            return BigDecimal.ZERO;
+        }
+        return BigDecimal.ZERO.max(BigDecimal.ONE.subtract(distance.divide(MAX_RELEVANT_DISTANCE, RoundingMode.FLOOR).sqrt(MathContext.DECIMAL32)));
+    }
+
+    private BigDecimal computeDiffSquared(BigDecimal requestedLatitude, BigDecimal actualLatitude) {
+        var diff = requestedLatitude.subtract(actualLatitude).abs();
+        if (diff.compareTo(BigDecimal.valueOf(180L)) > 0) {
+            // add handling of cases like +179 and -177 (diff = 4, not 354)
+            throw new UnsupportedOperationException("This diff in coordinates not yet implemented: " + requestedLatitude + " : " + actualLatitude);
+        }
+        return diff.pow(2);
     }
 
     /**

@@ -55,7 +55,7 @@ class ScoringServiceImplTest {
         assertEquals(1, suggestions.size());
         final Suggestion suggestion = suggestions.get(0);
         final BigDecimal expected = BigDecimal.valueOf(6).divide(BigDecimal.valueOf(11), 2, RoundingMode.CEILING);
-        assertEquals(expected, suggestion.getScore());
+        assertEquals(expected, suggestion.score());
     }
 
     @Test
@@ -71,7 +71,24 @@ class ScoringServiceImplTest {
         assertNotNull(suggestions);
         assertEquals(1, suggestions.size());
         final Suggestion suggestion = suggestions.get(0);
-        assertEquals(0, BigDecimal.ONE.compareTo(suggestion.getScore()));
+        assertEquals(0, BigDecimal.ONE.compareTo(suggestion.score()));
+    }
+
+    @Test
+    void testExactMatchFullnameDiffer() {
+        // given query without coordinates
+        Query query = new Query("St. Petersburg", null, null);
+
+        // when scoring exact short name, but fullname has appendix
+        final List<Suggestion> suggestions = scoringService.evaluate(query, List.of(City.of(1L, "St. Petersburg",
+                "St. Petersburg, Russia",
+                BigDecimal.ONE, BigDecimal.TEN)));
+
+        // then best score should be 1, because only short name matters
+        assertNotNull(suggestions);
+        assertEquals(1, suggestions.size());
+        final Suggestion suggestion = suggestions.get(0);
+        assertEquals(0, BigDecimal.ONE.compareTo(suggestion.score()));
     }
 
     @Test
@@ -87,7 +104,7 @@ class ScoringServiceImplTest {
         assertNotNull(suggestions);
         assertEquals(1, suggestions.size());
         final Suggestion suggestion = suggestions.get(0);
-        assertEquals(0, BigDecimal.ONE.compareTo(suggestion.getScore()));
+        assertEquals(0, BigDecimal.ONE.compareTo(suggestion.score()));
     }
 
     @Test
@@ -103,6 +120,6 @@ class ScoringServiceImplTest {
         assertNotNull(suggestions);
         assertEquals(1, suggestions.size());
         final Suggestion suggestion = suggestions.get(0);
-        assertEquals(BigDecimal.valueOf(5, 1), suggestion.getScore());
+        assertEquals(BigDecimal.valueOf(5, 1), suggestion.score());
     }
 }
