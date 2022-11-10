@@ -1,4 +1,4 @@
-package com.coveo.challenge.cities.search;
+package com.coveo.challenge.cities.impl.search;
 
 import com.coveo.challenge.cities.api.SearchService;
 import com.coveo.challenge.cities.model.City;
@@ -28,8 +28,8 @@ public class SearchServiceImpl implements SearchService {
     /**
      * Build exclusive to-key by incrementing last character by one,
      *
-     * @param fromKey
-     * @return
+     * @param fromKey start of the interval
+     * @return end of the interval
      */
     private String buildToKey(String fromKey) {
         final char[] chars = fromKey.toCharArray().clone();

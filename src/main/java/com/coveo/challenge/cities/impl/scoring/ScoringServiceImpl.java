@@ -1,4 +1,4 @@
-package com.coveo.challenge.cities.scoring;
+package com.coveo.challenge.cities.impl.scoring;
 
 import com.coveo.challenge.cities.api.ScoringService;
 import com.coveo.challenge.cities.model.City;

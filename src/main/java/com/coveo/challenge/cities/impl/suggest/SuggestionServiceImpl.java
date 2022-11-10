@@ -1,4 +1,4 @@
-package com.coveo.challenge.cities.suggest;
+package com.coveo.challenge.cities.impl.suggest;
 
 import com.coveo.challenge.cities.api.ScoringService;
 import com.coveo.challenge.cities.api.SearchService;

@@ -1,5 +1,6 @@
 package com.coveo.challenge.cities.search;
 
+import com.coveo.challenge.cities.impl.search.SearchServiceImpl;
 import com.coveo.challenge.cities.model.City;
 import org.junit.jupiter.api.Test;
 
@@ -69,11 +70,10 @@ class SearchServiceImplTest {
                 .add(City.of(4L, "Londontowne, MD, USA", BigDecimal.valueOf(38.93345d), BigDecimal.valueOf(-76.54941d)))
                 .build();
 
-        SearchServiceImpl searchService = new SearchServiceImpl(data);
-        return searchService;
+        return new SearchServiceImpl(data);
     }
 
-    private class DataBuilder {
+    private static class DataBuilder {
 
         private final TreeMap<String, City> data = new TreeMap<>();
 
