@@ -18,10 +18,22 @@ import java.util.NavigableMap;
 @RequiredArgsConstructor
 public class DataConfig {
 
+    /**
+     * File name source.
+     */
     private final ConfigProperties configProperties;
 
+    /**
+     * City loader.
+     */
     private final DataLoader dataLoader;
 
+    /**
+     * Loads list of US and CA cities.
+     *
+     * @return city list
+     * @throws IOException if troubled
+     */
     @Bean
     NavigableMap<String, City> loadData() throws IOException {
         return dataLoader.loadData(configProperties.getFilepath());

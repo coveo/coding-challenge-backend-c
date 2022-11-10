@@ -9,5 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @Data
 public class ConfigProperties {
 
+    /**
+     * File with US anc CA cities.
+     */
     private String filepath;
 }
